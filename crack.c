@@ -47,10 +47,12 @@ int main(int argc, char *argv[])
     FILE * dict = fopen(argv[2],"r");
     int count;
     char line[136], try[PASS_LEN];
+    //loop through dict
     while(!feof(dict)) {
         if(fgets(line,255,dict) != NULL) {
             line[strcspn(line, "\n")] = 0;
             char * try = tryWord(line,argv[1]);
+            //if hash matches a dict word, than it will print it in increment the count.
             if(try != NULL) {
                 count++;
                 printf("Hash: %s, Plaintxt: %s\n",try, line);
@@ -58,15 +60,11 @@ int main(int argc, char *argv[])
         }
     }
 
-    // For each dictionary word, pass it to tryWord, which
-    // will attempt to match it against the hashes in the hash_file.
-    
-    // If we got a match, display the hash and the word. For example:
-    //   5d41402abc4b2a76b9719d911017c592 hello
+]
     
     // Close the dictionary file.
     fclose(dict);
-    printf("%i Hashes were cracked!",count);
     // Display the number of hashes that were cracked.
+    printf("%i Hashes were cracked!",count);
 }
 
